@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/fragment_password_login">
+    <fragment
+        android:id="@+id/fragment_password_login"
+        android:name="com.inspur.blockchain.login.PasswordLoginFragment"
+        tools:layout="@layout/fragment_password_login">
+
+        <action
+            android:id="@+id/action_fragment_password_login_to_fragment_verification_code_login"
+            app:destination="@id/fragment_verification_code_login" />
+        <action
+            android:id="@+id/action_fragment_password_login_to_fragment_register_user"
+            app:destination="@id/fragment_register_user" />
+        <action
+            android:id="@+id/action_fragment_password_login_to_activity_main"
+            app:destination="@id/activity_main" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_verification_code_login"
+        android:name="com.inspur.blockchain.login.VerificationCodeLoginFragment"
+        tools:layout="@layout/fragment_verification_code_login">
+        <action
+            android:id="@+id/action_fragment_verification_code_login_to_fragment_password_login"
+            app:destination="@id/fragment_password_login" />
+        <action
+            android:id="@+id/action_fragment_verification_code_login_to_fragment_register_user"
+            app:destination="@id/fragment_register_user" />
+        <action
+            android:id="@+id/action_fragment_verification_code_login_to_activity_main"
+            app:destination="@id/activity_main" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_register_user"
+        android:name="com.inspur.blockchain.register.RegisterUserFragment"
+        tools:layout="@layout/fragment_register_user"/>
+    <activity
+        android:id="@+id/activity_main"
+        android:name="com.inspur.blockchain.main.MainActivity"
+        tools:layout="@layout/activity_main"/>
+
+</navigation>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#319DFD</color>
+    <color name="colorPrimaryDark">#319DFD</color>
+    <color name="colorAccent">#ffffff</color>
+    <!--50%透明度-->
+    <color name="color_7FFFFFFF">#7fffffff</color>
+
+    <color name="color_999999">#999999</color>
+</resources>

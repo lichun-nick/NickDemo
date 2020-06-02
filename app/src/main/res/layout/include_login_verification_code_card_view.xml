@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_circle_white_bg">
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_input_phone"
+        style="@style/TextInputEditTextTheme"
+        android:hint="@string/please_input_phone"
+        android:drawableLeft="@mipmap/ic_login_phone" />
+    <View
+        style="@style/CommonLine"
+        android:background="@drawable/shape_line"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/et_input_code"
+            style="@style/TextInputEditTextTheme"
+            android:hint="@string/please_input_v_code"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/ic_login_code" />
+        <com.inspur.lib_base.view.CountDownTextView
+            android:id="@+id/countdown_tv_get_code"
+            style="@style/TextInputEditTextTheme"
+            android:layout_width="wrap_content"
+            android:text="@string/get_verification_code"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+
+
+
+</LinearLayout>
