@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,8 +18,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.inspur.blockchain.HttpResponse;
 import com.inspur.blockchain.R;
-import com.inspur.lib_base.BaseFragment;
-import com.inspur.lib_base.ToastUtil;
+import com.inspur.lib_base.base.BaseFragment;
+import com.inspur.lib_base.util.ToastUtil;
 import com.inspur.lib_base.view.CountDownTextView;
 import com.inspur.lib_base.view.TitleView;
 
@@ -105,12 +106,14 @@ public class RegisterUserFragment extends BaseFragment {
         passwordTv.setText(getResources().getString(R.string.password));
         passwordEt = passwordParentView.findViewById(R.id.et_item_input_content);
         passwordEt.setHint(getResources().getString(R.string.please_input_password));
+        passwordEt.setInputType(EditorInfo.TYPE_TEXT_VARIATION_PASSWORD);
         //确认密码
         View passwordConfirmParentView = view.findViewById(R.id.include_confirm_user_password);
         TextView passwordConfirmTv = passwordConfirmParentView.findViewById(R.id.tv_item_input_title);
         passwordConfirmTv.setText(getResources().getString(R.string.confirm_password));
         passwordConfirmEt = passwordConfirmParentView.findViewById(R.id.et_item_input_content);
         passwordConfirmEt.setHint(getResources().getString(R.string.please_input_password));
+        passwordConfirmEt.setInputType(EditorInfo.TYPE_TEXT_VARIATION_PASSWORD);
         //邮箱
         View emailParentView = view.findViewById(R.id.include_user_email);
         TextView emailTv = emailParentView.findViewById(R.id.tv_item_input_title);
@@ -187,10 +190,9 @@ public class RegisterUserFragment extends BaseFragment {
             public void onChanged(JSONObject jsonObject) {
                 hideProgressLoading();
                 boolean status = jsonObject.optBoolean(HttpResponse.RESPONSE_STATUS);
-                ToastUtil.show(getContext(),jsonObject.optString(HttpResponse.RESPONSE_MESSAGE));
+                ToastUtil.show(requireContext(),jsonObject.optString(HttpResponse.RESPONSE_MESSAGE));
                 if(status){
                     NavHostFragment.findNavController(RegisterUserFragment.this).navigate(R.id.fragment_password_login);
-                    getParentFragmentManager().popBackStack();
                 }
             }
         });

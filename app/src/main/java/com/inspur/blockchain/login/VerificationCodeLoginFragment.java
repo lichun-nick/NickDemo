@@ -17,8 +17,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.inspur.blockchain.HttpResponse;
 import com.inspur.blockchain.R;
-import com.inspur.lib_base.BaseFragment;
-import com.inspur.lib_base.ToastUtil;
+import com.inspur.lib_base.base.BaseFragment;
+import com.inspur.lib_base.util.ToastUtil;
 import com.inspur.lib_base.view.CountDownTextView;
 
 import org.json.JSONObject;
@@ -56,6 +56,7 @@ public class VerificationCodeLoginFragment extends BaseFragment {
                 Navigation.findNavController(v).navigate(R.id.action_fragment_verification_code_login_to_fragment_password_login);
             }
         });
+
         phoneEditText = view.findViewById(R.id.et_input_phone);
         codeEditText = view.findViewById(R.id.et_input_code);
         countDownTextView = view.findViewById(R.id.countdown_tv_get_code);
@@ -158,7 +159,7 @@ public class VerificationCodeLoginFragment extends BaseFragment {
                         getActivity().finish();
                     }
                 }else{
-                    ToastUtil.show(getContext(),jsonObject.optString(HttpResponse.RESPONSE_MESSAGE));
+                    ToastUtil.show(requireContext(),jsonObject.optString(HttpResponse.RESPONSE_MESSAGE));
                 }
             }
         });

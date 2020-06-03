@@ -10,7 +10,7 @@ import com.inspur.blockchain.HttpResponse;
 import com.inspur.blockchain.R;
 import com.inspur.blockchain.login.LoginActivity;
 import com.inspur.blockchain.main.MainActivity;
-import com.inspur.lib_base.BaseActivity;
+import com.inspur.lib_base.base.BaseActivity;
 import com.inspur.lib_base.view.CountDownTextView;
 
 import org.json.JSONObject;

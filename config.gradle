@@ -1,0 +1,3 @@
+project.ext{
+    DEV_HOST = "https://dev.qualink.com/"
+}

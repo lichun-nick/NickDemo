@@ -1,7 +1,7 @@
 package com.inspur.blockchain.login;
 
 import com.inspur.blockchain.R;
-import com.inspur.lib_base.BaseActivity;
+import com.inspur.lib_base.base.BaseActivity;
 
 /**
  * @author lichun

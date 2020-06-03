@@ -2,13 +2,12 @@ package com.inspur.blockchain.main;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
 import com.inspur.blockchain.DigitalIdentityQrCodeActivity;
 import com.inspur.blockchain.R;
 import com.inspur.blockchain.ScanActivity;
-import com.inspur.lib_base.BaseActivity;
+import com.inspur.lib_base.base.BaseActivity;
 
 /**
  * @author lichun

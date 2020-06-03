@@ -20,13 +20,15 @@
     <string name="please_input_v_code">请输入验证码</string>
     <string name="confirm_password">确认密码</string>
     <string name="please_input_password">请输入密码</string>
+    <string name="please_input_new_password">请输入新密码</string>
+    <string name="please_confirm_new_password">请确认新密码</string>
     <string name="email">邮箱</string>
     <string name="please_input_email">请输入邮箱</string>
     <string name="nick_name">昵称</string>
     <string name="please_input_nick_name">请输入昵称</string>
     <string name="scan_code">扫码</string>
-    <string name="id_card">身份证</string>
-    <string name="voucher">凭证</string>
+    <string name="receive_voucher">接收凭证</string>
+    <string name="voucher">我的凭证</string>
     <string name="marks_left_on_the_chain">本次验证已上链留痕</string>
 
 

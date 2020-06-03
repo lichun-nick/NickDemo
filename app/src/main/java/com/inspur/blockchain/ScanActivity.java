@@ -2,7 +2,7 @@ package com.inspur.blockchain;
 
 import android.view.View;
 
-import com.inspur.lib_base.BaseActivity;
+import com.inspur.lib_base.base.BaseActivity;
 import com.inspur.lib_base.view.TitleView;
 
 import cn.bingoogolapple.qrcode.core.QRCodeView;

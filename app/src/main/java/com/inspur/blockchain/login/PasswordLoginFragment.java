@@ -1,13 +1,21 @@
 package com.inspur.blockchain.login;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
+import androidx.core.content.ContextCompat;
+import androidx.core.view.inputmethod.EditorInfoCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -15,8 +23,8 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.inspur.blockchain.HttpResponse;
 import com.inspur.blockchain.R;
-import com.inspur.lib_base.BaseFragment;
-import com.inspur.lib_base.ToastUtil;
+import com.inspur.lib_base.base.BaseFragment;
+import com.inspur.lib_base.util.ToastUtil;
 
 import org.json.JSONObject;
 
@@ -31,7 +39,10 @@ public class PasswordLoginFragment extends BaseFragment {
 
     private AppCompatEditText nameEditText;
     private AppCompatEditText passwordEditText;
+    private ImageView clearPwdIv;
+    private ImageView changeVisibleIv;
     private Button login;
+    private boolean passwordVisible;
 
     private LoginViewModel loginViewModel;
 
@@ -55,6 +66,33 @@ public class PasswordLoginFragment extends BaseFragment {
                 Navigation.findNavController(v).navigate(R.id.action_fragment_password_login_to_fragment_verification_code_login);
             }
         });
+        TextView forgetPassword = view.findViewById(R.id.btn_forget_password);
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.action_fragment_password_login_to_fragment_forget_password);
+            }
+        });
+        clearPwdIv = view.findViewById(R.id.iv_clear_password);
+        clearPwdIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                passwordEditText.setText("");
+            }
+        });
+        changeVisibleIv = view.findViewById(R.id.iv_change_visible);
+        changeVisibleIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                passwordVisible = !passwordVisible;
+                if (passwordVisible) {
+                    passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                } else {
+                    passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+            }
+        });
+
         login = view.findViewById(R.id.btn_login);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,6 +132,31 @@ public class PasswordLoginFragment extends BaseFragment {
             }
         });
 
+        passwordEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(s.toString().length() > 0){
+                    clearPwdIv.setVisibility(View.VISIBLE);
+                    changeVisibleIv.setVisibility(View.VISIBLE);
+                }else{
+                    clearPwdIv.setVisibility(View.INVISIBLE);
+                    changeVisibleIv.setVisibility(View.INVISIBLE);
+                }
+
+            }
+        });
+
+
 
     }
 
@@ -110,7 +173,7 @@ public class PasswordLoginFragment extends BaseFragment {
                         getActivity().finish();
                     }
                 }else{
-                    ToastUtil.show(getContext(),jsonObject.optString(HttpResponse.RESPONSE_MESSAGE));
+                    ToastUtil.show(requireContext(),jsonObject.optString(HttpResponse.RESPONSE_MESSAGE));
                 }
             }
         });

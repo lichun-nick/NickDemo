@@ -22,5 +22,9 @@ public final class UrlConfig {
      * 检查token有效性
      */
     public static final String CHECK_TOKEN = DEV_HOST + "ibid/user/checkToken";
+    /**
+     * 重设密码
+     */
+    public static final String RESET_PASSWORD_URL = DEV_HOST + "ibid/user/resetPwd";
 
 }

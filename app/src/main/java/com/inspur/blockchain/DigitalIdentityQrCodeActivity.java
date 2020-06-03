@@ -2,18 +2,16 @@ package com.inspur.blockchain;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ImageView;
 
 
-import com.inspur.lib_base.BaseActivity;
-import com.inspur.lib_base.ToastUtil;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.inspur.lib_base.base.BaseActivity;
 import com.inspur.lib_base.view.TitleView;
 
-import cn.bingoogolapple.qrcode.core.BGAQRCodeUtil;
-import cn.bingoogolapple.qrcode.zxing.QRCodeEncoder;
 
 
 /**
@@ -49,24 +47,16 @@ public class DigitalIdentityQrCodeActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        createEnglishQRCode();
-    }
-
-    private void createEnglishQRCode() {
-        new AsyncTask<Void, Void, Bitmap>() {
+        DigitalIdentityQrCodeViewModel viewModel = new ViewModelProvider(this).get(DigitalIdentityQrCodeViewModel.class);
+        viewModel.generateQrCode(this,"nick").observe(this, new Observer<Bitmap>() {
             @Override
-            protected Bitmap doInBackground(Void... params) {
-                return QRCodeEncoder.syncEncodeQRCode("nick", BGAQRCodeUtil.dp2px(DigitalIdentityQrCodeActivity.this, 196), Color.parseColor("#319DFD"));
-            }
-
-            @Override
-            protected void onPostExecute(Bitmap bitmap) {
-                if (bitmap != null) {
+            public void onChanged(Bitmap bitmap) {
+                if(bitmap != null){
                     ivQR.setImageBitmap(bitmap);
-                } else {
-                    ToastUtil.show(DigitalIdentityQrCodeActivity.this, "生成英文二维码失败");
                 }
             }
-        }.execute();
+        });
     }
+
+
 }

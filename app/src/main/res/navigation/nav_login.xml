@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_fragment_password_login_to_activity_main"
             app:destination="@id/activity_main" />
+        <action
+            android:id="@+id/action_fragment_password_login_to_fragment_forget_password"
+            app:destination="@id/fragment_forget_password" />
     </fragment>
 
     <fragment
@@ -32,11 +35,18 @@
         <action
             android:id="@+id/action_fragment_verification_code_login_to_activity_main"
             app:destination="@id/activity_main" />
+        <action
+            android:id="@+id/action_fragment_verification_code_login_to_fragment_forget_password"
+            app:destination="@id/fragment_forget_password" />
     </fragment>
     <fragment
         android:id="@+id/fragment_register_user"
         android:name="com.inspur.blockchain.register.RegisterUserFragment"
         tools:layout="@layout/fragment_register_user"/>
+    <fragment
+        android:id="@+id/fragment_forget_password"
+        android:name="com.inspur.blockchain.register.ForgetPasswordFragment"
+        tools:layout="@layout/fragment_forget_password"/>
     <activity
         android:id="@+id/activity_main"
         android:name="com.inspur.blockchain.main.MainActivity"

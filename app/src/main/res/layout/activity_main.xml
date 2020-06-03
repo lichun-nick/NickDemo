@@ -22,8 +22,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:ttTitleText="@string/app_name"
-        app:ttTitleBackgroundColor="@android:color/transparent"
-        app:ttRightDrawable="@mipmap/home_settings"/>
+        app:ttTitleBackgroundColor="@android:color/transparent" />
 
     <LinearLayout
         android:id="@+id/fl_home_first"
@@ -66,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             style="@style/TextWhiteTheme"
-            android:text="@string/id_card"/>
+            android:text="@string/receive_voucher"/>
 
     </LinearLayout>
     <LinearLayout
