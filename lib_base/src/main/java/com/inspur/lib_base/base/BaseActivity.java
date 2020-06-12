@@ -1,5 +1,6 @@
 package com.inspur.lib_base.base;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -24,6 +25,8 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected abstract int getLayoutId();
 
+    protected abstract int wrapLayoutId();
+
     /**
      * 初始化view
      */
@@ -38,17 +41,22 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        mLoadingLayout = wrapLoading();
+        if(wrapLayoutId() == 0){
+            mLoadingLayout = LoadingLayout.wrap(this);
+        }else{
+            mLoadingLayout = LoadingLayout.wrap(findViewById(wrapLayoutId()));
+        }
         initView();
         initData();
     }
 
-    protected LoadingLayout wrapLoading(){
-        return LoadingLayout.wrap(this);
-    }
 
     protected void showEmpty(){
         mLoadingLayout.showEmpty();
+    }
+
+    protected void showContent(){
+        mLoadingLayout.showContent();
     }
 
     protected void showError(){
@@ -86,6 +94,17 @@ public abstract class BaseActivity extends AppCompatActivity {
             mFragmentManager.beginTransaction().hide(fragment).commit();
         }
 
+    }
+
+    protected void startActivity(Class activityClass){
+        Intent intent = new Intent(this,activityClass);
+        startActivity(intent);
+    }
+
+    protected void startActivityWithFinish(Class activityClass){
+        Intent intent = new Intent(this,activityClass);
+        startActivity(intent);
+        finish();
     }
 
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 
 import androidx.lifecycle.Observer;
@@ -20,8 +21,7 @@ import com.inspur.lib_base.view.TitleView;
  */
 public class DigitalIdentityQrCodeActivity extends BaseActivity {
 
-    private TitleView titleView;
-    private ImageView ivQR;
+    private ImageView ivqr;
 
     @Override
     protected int getLayoutId() {
@@ -29,8 +29,13 @@ public class DigitalIdentityQrCodeActivity extends BaseActivity {
     }
 
     @Override
+    protected int wrapLayoutId() {
+        return 0;
+    }
+
+    @Override
     protected void initView() {
-        titleView = findViewById(R.id.title_digital_identity);
+        TitleView titleView = findViewById(R.id.title_digital_identity);
         titleView.setDelegate(new TitleView.Delegate() {
             @Override
             public void onClickLeft(View v) {
@@ -42,17 +47,19 @@ public class DigitalIdentityQrCodeActivity extends BaseActivity {
                 startActivity(new Intent(DigitalIdentityQrCodeActivity.this,ScanActivity.class));
             }
         });
-        ivQR = findViewById(R.id.iv_qr_code);
+        ivqr = findViewById(R.id.iv_qr_code);
+        TextView tvDesc = findViewById(R.id.tv_qr_code_authority);
+        tvDesc.setText("由"+getIntent().getStringExtra(Keys.QR_CODE_AUTH)+"发布");
     }
 
     @Override
     protected void initData() {
         DigitalIdentityQrCodeViewModel viewModel = new ViewModelProvider(this).get(DigitalIdentityQrCodeViewModel.class);
-        viewModel.generateQrCode(this,"nick").observe(this, new Observer<Bitmap>() {
+        viewModel.generateQrCode(this,getIntent().getStringExtra(Keys.QR_CODE_PATH)).observe(this, new Observer<Bitmap>() {
             @Override
             public void onChanged(Bitmap bitmap) {
                 if(bitmap != null){
-                    ivQR.setImageBitmap(bitmap);
+                    ivqr.setImageBitmap(bitmap);
                 }
             }
         });

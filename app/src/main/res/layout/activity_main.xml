@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="30dp"
+        android:paddingTop="30dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/fl_home_second"
         app:layout_constraintTop_toBottomOf="@+id/home_title_view">
@@ -52,6 +52,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
+        android:paddingTop="30dp"
         app:layout_constraintLeft_toRightOf="@id/fl_home_first"
         app:layout_constraintRight_toLeftOf="@id/fl_home_third"
         app:layout_constraintTop_toTopOf="@id/fl_home_first">
@@ -74,6 +75,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
+        android:paddingTop="30dp"
         app:layout_constraintLeft_toRightOf="@id/fl_home_second"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@id/fl_home_first">
@@ -91,43 +93,148 @@
 
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/rl_home_top"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_home_top"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="19dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fl_home_first"
         android:background="@drawable/shape_circle_white_bg">
 
         <View
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            style="@style/CommonVerticalLine"/>
+            android:id="@+id/line_horzanal_divider"
+            android:layout_height="96dp"
+            style="@style/CommonVerticalLine"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    </RelativeLayout>
+        <include
+            layout="@layout/include_item_voucher_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/line_horzanal_divider"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <include
+            layout="@layout/include_item_verify_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="@id/line_horzanal_divider"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/ll_home_verify_max"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:orientation="vertical"
+        android:paddingTop="14dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rl_home_top"
+        app:layout_constraintTop_toBottomOf="@id/cl_home_top"
         android:background="@drawable/shape_circle_white_bg">
 
-        <View
-            android:layout_height="200dp"
+        <TextView
+            android:id="@+id/tv_home_verify_max_did"
+            style="@style/TextBlackTheme"
+            android:gravity="start|center_vertical"
+            android:textColor="@color/color_333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            style="@style/CommonVerticalLine"/>
+            android:text="DID:XXXXXXXXXXXXXXX"/>
+        <TextView
+            android:id="@+id/tv_home_verify_did_max_count"
+            style="@style/TextBlackTheme"
+            android:gravity="start|center_vertical"
+            android:textColor="@color/color_333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="被验证12次"/>
+
+        <TextView
+            style="@style/TextBlackTheme"
+            android:textColor="@color/color_333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/the_voucher_of_max_verification"/>
+
+        <View
+            style="@style/CommonLine"
+            android:layout_marginTop="19dp"/>
+
+        <TextView
+            style="@style/ButtonTheme"
+            android:layout_width="match_parent"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/see"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_home_verify_record"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="vertical"
+        android:paddingTop="14dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_home_verify_max"
+        android:background="@drawable/shape_circle_white_bg">
+        <TextView
+            android:id="@+id/tv_home_verify_record_detail"
+            style="@style/TextBlackTheme"
+            android:gravity="start|center_vertical"
+            android:textColor="@color/color_333333"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="DID:XXXXXXXXXXXXXXX"/>
+        <TextView
+            android:id="@+id/tv_home_verify_record_time"
+            style="@style/TextBlackTheme"
+            android:textColor="@color/color_999999"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="被验证12次"/>
+
+        <TextView
+            android:id="@+id/tv_home_verify_record_hash"
+            style="@style/TextBlackTheme"
+            android:gravity="start|center_vertical"
+            android:textColor="@color/colorPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/the_voucher_of_max_verification"/>
+
+        <View
+            style="@style/CommonLine"
+            android:layout_marginTop="19dp"/>
+
+        <TextView
+            style="@style/ButtonTheme"
+            android:layout_width="match_parent"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/see"/>
 
     </LinearLayout>
 
-
-
     <ImageView
+        android:id="@+id/iv_home_bottom_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/icon_home_bottom_tip"

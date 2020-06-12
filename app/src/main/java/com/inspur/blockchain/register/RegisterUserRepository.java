@@ -23,8 +23,7 @@ public class RegisterUserRepository {
     public LiveData<JSONObject> registerUser(ArrayMap<String,String> params){
         final MutableLiveData<JSONObject> mLiveData = new MutableLiveData<>();
         NetworkManager.Builder mBuilder = new NetworkManager.Builder();
-        mBuilder.url(UrlConfig.REGISTER_URL).body(params).post().build();
-        NetworkManager.getInstance().access(new NetCallback<JSONObject>() {
+        mBuilder.url(UrlConfig.REGISTER_URL).body(params).post().build().requestJson(new NetCallback<JSONObject>() {
             @Override
             public void onSuccess(JSONObject jsonObject) {
                 mLiveData.postValue(jsonObject);
@@ -47,8 +46,7 @@ public class RegisterUserRepository {
     public LiveData<JSONObject> requestVerificationCode(ArrayMap<String,String> params){
         final MutableLiveData<JSONObject> mLiveData = new MutableLiveData<>();
         NetworkManager.Builder mBuilder = new NetworkManager.Builder();
-        mBuilder.url(UrlConfig.REQUEST_VERIFICATION_CODE_URL+ VerificationCodeType.REGISTER).body(params).post().build();
-        NetworkManager.getInstance().access(new NetCallback<JSONObject>() {
+        mBuilder.url(UrlConfig.REQUEST_VERIFICATION_CODE_URL+ VerificationCodeType.REGISTER).body(params).post().build().requestJson(new NetCallback<JSONObject>() {
             @Override
             public void onSuccess(JSONObject jsonObject) {
                 Log.i(TAG, "onSuccess: " + jsonObject.toString());

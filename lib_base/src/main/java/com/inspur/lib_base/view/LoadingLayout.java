@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.inspur.lib_base.R;
@@ -50,6 +51,9 @@ public class LoadingLayout extends FrameLayout {
         parent.removeView(view);
 
         LoadingLayout layout = new LoadingLayout(view.getContext());
+        layout.setBackgroundResource(R.color.colorPrimary);
+        layout.setEmptyImage(R.mipmap.icon_empty);
+        layout.setEmptyText("当前为空");
         parent.addView(layout, index, lp);
         layout.addView(view);
         layout.setContentView(view);
@@ -97,14 +101,14 @@ public class LoadingLayout extends FrameLayout {
 
         mInflater = LayoutInflater.from(context);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.LoadingLayout, defStyleAttr, 0);
-        mEmptyImage = a.getResourceId(R.styleable.LoadingLayout_llEmptyImage, NO_ID);
+        mEmptyImage = a.getResourceId(R.styleable.LoadingLayout_llEmptyImage, R.mipmap.icon_empty);
         mEmptyText = a.getString(R.styleable.LoadingLayout_llEmptyText);
 
         mErrorImage = a.getResourceId(R.styleable.LoadingLayout_llErrorImage, NO_ID);
         mErrorText = a.getString(R.styleable.LoadingLayout_llErrorText);
         mRetryText = a.getString(R.styleable.LoadingLayout_llRetryText);
 
-        mTextColor = a.getColor(R.styleable.LoadingLayout_llTextColor, 0xff999999);
+        mTextColor = a.getColor(R.styleable.LoadingLayout_llTextColor, ContextCompat.getColor(getContext(),R.color.colorAccent));
         mTextSize = a.getDimensionPixelSize(R.styleable.LoadingLayout_llTextSize, dp2px(16));
 
         mButtonTextColor = a.getColor(R.styleable.LoadingLayout_llButtonTextColor, 0xff999999);
@@ -169,6 +173,7 @@ public class LoadingLayout extends FrameLayout {
         }
         return this;
     }
+
 
     public LoadingLayout setEmptyImage(@DrawableRes int resId) {
         mEmptyImage = resId;

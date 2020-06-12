@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ct_choice_show"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/tv_choice_show_title"
+        style="@style/TextLightBlackTheme"
+        android:textSize="16sp"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/select_properties"/>
+    <TextView
+        android:id="@+id/tv_choice_show_type_title"
+        style="@style/TextLightBlackTheme"
+        android:text="类型："
+        android:layout_marginTop="14dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/cb_total_properties"
+        app:layout_constraintTop_toBottomOf="@id/tv_choice_show_title"
+        app:layout_constraintHorizontal_weight="2"/>
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_total_properties"
+        style="@style/CheckBoxTheme"
+        android:button="@drawable/selector_common_checkbox"
+        android:text="@string/total_properties"
+        app:layout_constraintTop_toTopOf="@id/tv_choice_show_type_title"
+        app:layout_constraintLeft_toRightOf="@id/tv_choice_show_type_title"
+        app:layout_constraintRight_toLeftOf="@+id/cb_selective_disclosure"
+        app:layout_constraintHorizontal_weight="2"/>
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_selective_disclosure"
+        style="@style/CheckBoxTheme"
+        android:button="@drawable/selector_common_checkbox"
+        android:text="@string/selective_disclosure"
+        android:checked="true"
+        app:layout_constraintTop_toTopOf="@id/tv_choice_show_type_title"
+        app:layout_constraintLeft_toRightOf="@id/cb_total_properties"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_weight="3"/>
+    <TextView
+        android:id="@+id/tv_choice_show_disclosure_title"
+        style="@style/TextLightBlackTheme"
+        android:text="披露属性："
+        app:layout_constraintLeft_toLeftOf="@id/tv_choice_show_type_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_choice_show_type_title"
+        android:layout_marginTop="23dp"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_show_name"
+        style="@style/CheckBoxTheme"
+        android:button="@drawable/selector_square_checkbox"
+        android:text="@string/name"
+        android:checked="true"
+        app:layout_constraintTop_toTopOf="@id/tv_choice_show_disclosure_title"
+        app:layout_constraintLeft_toRightOf="@id/tv_choice_show_disclosure_title"
+        android:layout_marginLeft="4dp"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_show_birthday"
+        style="@style/CheckBoxTheme"
+        android:button="@drawable/selector_square_checkbox"
+        android:text="@string/birthday"
+        app:layout_constraintTop_toTopOf="@id/cb_show_name"
+        app:layout_constraintLeft_toLeftOf="@id/cb_selective_disclosure" />
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_show_nation"
+        style="@style/CheckBoxTheme"
+        android:button="@drawable/selector_square_checkbox"
+        android:text="@string/nation"
+        app:layout_constraintTop_toBottomOf="@id/cb_show_name"
+        app:layout_constraintLeft_toLeftOf="@id/cb_show_name"
+        android:layout_marginTop="10dp"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/cb_show_address"
+        style="@style/CheckBoxTheme"
+        android:button="@drawable/selector_square_checkbox"
+        android:text="@string/location"
+        app:layout_constraintTop_toTopOf="@id/cb_show_nation"
+        app:layout_constraintLeft_toLeftOf="@id/cb_show_birthday" />
+
+    <View
+        android:id="@+id/line_divider"
+        style="@style/CommonLine"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cb_show_address"
+        android:layout_marginTop="38dp"/>
+    <View
+        android:id="@+id/line_vertical_divider"
+        style="@style/CommonVerticalLine"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_divider"/>
+    <Button
+        android:id="@+id/btn_choice_preview"
+        style="@style/ButtonTheme"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/line_vertical_divider"
+        app:layout_constraintTop_toBottomOf="@id/line_divider"
+        android:text="@string/preview"
+        android:textColor="@color/color_666666" />
+    <Button
+        android:id="@+id/btn_choice_confirm"
+        style="@style/ButtonTheme"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toRightOf="@id/line_vertical_divider"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_divider"
+        android:text="@string/confirm"
+        android:textColor="@color/colorPrimary" />
+
+    <FrameLayout
+        android:id="@+id/loading_view"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_choice_show_title"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

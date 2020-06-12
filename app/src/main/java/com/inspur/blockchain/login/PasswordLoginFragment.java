@@ -14,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.core.content.ContextCompat;
-import androidx.core.view.inputmethod.EditorInfoCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -84,12 +82,12 @@ public class PasswordLoginFragment extends BaseFragment {
         changeVisibleIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                passwordVisible = !passwordVisible;
                 if (passwordVisible) {
                     passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 } else {
                     passwordEditText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 }
+                passwordVisible = !passwordVisible;
             }
         });
 
@@ -165,7 +163,7 @@ public class PasswordLoginFragment extends BaseFragment {
         loginViewModel.userLogin(LoginViewModel.PASSWORD_LOGIN_TYPE,nameEditText.getText().toString().trim(),passwordEditText.getText().toString().trim()).observe(this, new Observer<JSONObject>() {
             @Override
             public void onChanged(JSONObject jsonObject) {
-                hideProgressLoading();
+
                 boolean status = jsonObject.optBoolean(HttpResponse.RESPONSE_STATUS);
                 if(status){
                     NavHostFragment.findNavController(PasswordLoginFragment.this).navigate(R.id.activity_main);
@@ -175,6 +173,7 @@ public class PasswordLoginFragment extends BaseFragment {
                 }else{
                     ToastUtil.show(requireContext(),jsonObject.optString(HttpResponse.RESPONSE_MESSAGE));
                 }
+                hideProgressLoading();
             }
         });
 

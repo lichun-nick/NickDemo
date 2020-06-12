@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:paddingBottom="8dp"
+    android:background="@drawable/shape_circle_white_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/iv_list_item_voucher_tip"
+        style="@style/ImageStyle"
+        android:src="@mipmap/icon_id_card"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <ImageView
+        style="@style/ImageStyle"
+        android:src="@mipmap/icon_more"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp" />
+
+    <TextView
+        android:id="@+id/tv_list_item_did_tip"
+        style="@style/TextBlackTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_list_item_voucher_tip"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/color_666666"
+        android:text="凭证DID"/>
+
+    <TextView
+        android:id="@+id/tv_list_item_type_tip"
+        style="@style/TextBlackTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/tv_list_item_did_tip"
+        app:layout_constraintTop_toBottomOf="@id/tv_list_item_did_tip"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/color_666666"
+        android:text="@string/type"/>
+
+    <TextView
+        android:id="@+id/tv_list_item_did"
+        style="@style/TextBlackTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/tv_list_item_did_tip"
+        app:layout_constraintTop_toTopOf="@id/tv_list_item_did_tip"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="27dp"
+        android:layout_marginRight="10dp"
+        android:text="fdafadffffsaf"
+        android:gravity="start"
+        android:textColor="@color/color_333333" />
+
+    <TextView
+        android:id="@+id/tv_list_item_type"
+        style="@style/TextBlackTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/tv_list_item_type_tip"
+        app:layout_constraintTop_toTopOf="@id/tv_list_item_type_tip"
+        app:layout_constraintLeft_toLeftOf="@id/tv_list_item_did"
+        app:layout_constraintRight_toRightOf="@id/tv_list_item_did"
+        android:gravity="start"
+        android:textColor="@color/color_333333"
+        android:text="@string/id_card"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

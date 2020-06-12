@@ -16,6 +16,11 @@ public class LoginActivity extends BaseActivity {
     }
 
     @Override
+    protected int wrapLayoutId() {
+        return 0;
+    }
+
+    @Override
     protected void initView() {
 
     }

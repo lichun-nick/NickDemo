@@ -10,12 +10,16 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:textSize="14sp"
+        android:textColor="@color/color_333333"
         android:textStyle="bold"
+        android:text="@string/name"
         android:gravity="start|center_vertical"/>
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_item_input_content"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@null"
+        android:hint="@string/please_input_nick_name"
+        android:textColorHint="@color/color_CCCCCC"
         android:textSize="14sp"/>
 </LinearLayout>

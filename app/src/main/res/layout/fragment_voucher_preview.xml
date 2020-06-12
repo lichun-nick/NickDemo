@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/tv_property_preview_title"
+        style="@style/TextLightBlackTheme"
+        android:textSize="16sp"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/property_preview"/>
+    <TextView
+        android:id="@+id/tv_property_preview_tip"
+        style="@style/TextLightBlackTheme"
+        android:textStyle="normal"
+        android:textSize="16sp"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_property_preview_title"
+        android:text="@string/the_following_properties_will_be_verified"
+        android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll_preview_property_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="9dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_property_preview_tip"
+        android:background="@color/color_F3F3F3"/>
+
+    <View
+        android:id="@+id/line_divider"
+        style="@style/CommonLine"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_preview_property_detail"
+        android:layout_marginTop="24dp"/>
+    <View
+        android:id="@+id/line_vertical_divider"
+        style="@style/CommonVerticalLine"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_divider"/>
+    <Button
+        android:id="@+id/btn_preview_cancel"
+        style="@style/ButtonTheme"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/line_vertical_divider"
+        app:layout_constraintTop_toBottomOf="@id/line_divider"
+        android:text="@string/cancel"
+        android:textColor="@color/color_666666" />
+    <Button
+        android:id="@+id/btn_preview_confirm"
+        style="@style/ButtonTheme"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toRightOf="@id/line_vertical_divider"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_divider"
+        android:text="@string/confirm"
+        android:textColor="@color/colorPrimary" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,8 @@
 
 
 
+
+
     <style name="ButtonTheme" parent="TextAppearance.AppCompat.Button">
         <item name="android:layout_height">@dimen/input_text_height</item>
         <item name="android:layout_width">wrap_content</item>
@@ -64,6 +66,14 @@
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="TextLightBlackTheme" parent="TextBlackTheme">
+        <item name="android:textColor">@color/color_333333</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="CheckBoxTheme" parent="TextLightBlackTheme">
+        <item name="android:paddingLeft">8dp</item>
+    </style>
     <style name="CommonLine">
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_width">match_parent</item>
@@ -80,6 +90,12 @@
         <item name="android:layout_width">1dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">#E6E6E6</item>
+    </style>
+    <style name="ImageStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:contentDescription">image</item>
     </style>
 
 </resources>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/rl_face_detect"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.otaliastudios.cameraview.CameraView
+        android:id="@+id/camera"
+        android:keepScreenOn="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cameraFacing="front"
+        app:cameraMode="picture"
+        app:cameraPreview="glSurface"
+        app:cameraPictureSizeAspectRatio="1:1"
+        app:cameraSnapshotMaxHeight="200"
+        app:cameraSnapshotMaxWidth="200"
+        android:layout_centerHorizontal="true" />
+
+    <com.inspur.icity.comp_seal.ui.view.InnerCircleView
+        android:id="@+id/iv_face"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="visible"/>
+
+    <com.inspur.icity.comp_seal.ui.view.ProgressCircleView
+        android:id="@+id/pcv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"/>
+    <View
+        android:id="@+id/title_face_detect"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"/>
+    <TextView
+        android:id="@+id/tv_face_detect_tip"
+        style="@style/Text_Tip_Style"
+        android:text="@string/face_gather_tip"
+        android:layout_marginTop="@dimen/value_15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/title_face_detect"/>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/tv_face_change_verify"
+        style="@style/Text_Bottom_Tip_Style"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

@@ -29,6 +29,11 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     @Override
+    protected int wrapLayoutId() {
+        return 0;
+    }
+
+    @Override
     protected void initView() {
         CountDownTextView countDownTextView = findViewById(R.id.countdown_tv);
         countDownTextView.setNormalText("")

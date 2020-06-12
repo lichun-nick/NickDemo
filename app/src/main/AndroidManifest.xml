@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.inspur.blockchain">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -17,7 +18,8 @@
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:replace="android:theme">
 
         <activity android:name=".main.MainActivity"
 
@@ -38,6 +40,13 @@
         <activity android:name=".ScanActivity"
             android:screenOrientation="fullSensor"/>
         <activity android:name=".DigitalIdentityQrCodeActivity" />
+        <activity android:name=".voucher.VoucherListActivity" />
+        <activity android:name=".voucher.RequestVoucherActivity" />
+        <activity android:name=".recognize.FaceRecognizeActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/MainTheme"/>
+        <activity android:name=".voucher.VoucherDetailActivity" />
+        <activity android:name=".ScanShowResultActivity" />
     </application>
 
 </manifest>

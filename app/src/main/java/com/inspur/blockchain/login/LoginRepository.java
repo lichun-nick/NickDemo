@@ -22,8 +22,7 @@ public class LoginRepository {
     public LiveData<JSONObject> userLogin(ArrayMap<String,String> params){
         final MutableLiveData<JSONObject> mutableLiveData = new MutableLiveData<>();
         NetworkManager.Builder mBuilder = new NetworkManager.Builder();
-        mBuilder.url(UrlConfig.PASSWORD_LOGIN_URL).body(params).post().build();
-        NetworkManager.getInstance().access(new NetCallback<JSONObject>() {
+        mBuilder.url(UrlConfig.PASSWORD_LOGIN_URL).body(params).post().build().requestJson(new NetCallback<JSONObject>() {
             @Override
             public void onSuccess(JSONObject jsonObject) {
                 mutableLiveData.postValue(jsonObject);
@@ -48,8 +47,7 @@ public class LoginRepository {
     public LiveData<JSONObject> requestVerificationCode(ArrayMap<String,String> params){
         final MutableLiveData<JSONObject> mLiveData = new MutableLiveData<>();
         NetworkManager.Builder mBuilder = new NetworkManager.Builder();
-        mBuilder.url(UrlConfig.REQUEST_VERIFICATION_CODE_URL+ VerificationCodeType.LOGIN).body(params).post().build();
-        NetworkManager.getInstance().access(new NetCallback<JSONObject>() {
+        mBuilder.url(UrlConfig.REQUEST_VERIFICATION_CODE_URL+ VerificationCodeType.LOGIN).body(params).post().build().requestJson(new NetCallback<JSONObject>() {
             @Override
             public void onSuccess(JSONObject jsonObject) {
                 mLiveData.postValue(jsonObject);
