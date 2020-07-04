@@ -1,23 +1,26 @@
 package com.inspur.lib_base.base;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.inspur.lib_base.view.LoadingLayout;
+import com.inspur.lib_base.view.LoadingDialog;
+
 
 /**
  * @author lichun
  */
 public abstract class BaseActivity extends AppCompatActivity {
 
-    private LoadingLayout mLoadingLayout;
     private FragmentManager mFragmentManager;
+    private LoadingDialog loadingDialog;
 
     /**
      * 获取layout id
@@ -41,37 +44,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
-        if(wrapLayoutId() == 0){
-            mLoadingLayout = LoadingLayout.wrap(this);
-        }else{
-            mLoadingLayout = LoadingLayout.wrap(findViewById(wrapLayoutId()));
-        }
         initView();
         initData();
     }
 
-
-    protected void showEmpty(){
-        mLoadingLayout.showEmpty();
-    }
-
-    protected void showContent(){
-        mLoadingLayout.showContent();
-    }
-
-    protected void showError(){
-        mLoadingLayout.showError();
-    }
-
-
-
-    protected void showProgressLoading(){
-        mLoadingLayout.showLoading();
-    }
-
-    protected void hideProgressLoading(){
-        mLoadingLayout.showContent();
-    }
 
     protected void showFragment(int parentId, Fragment fragment){
         if(mFragmentManager == null){
@@ -80,6 +56,18 @@ public abstract class BaseActivity extends AppCompatActivity {
         Fragment frag = mFragmentManager.findFragmentByTag(fragment.getTag());
         if(frag == null){
             mFragmentManager.beginTransaction().add(parentId,fragment).commit();
+        }else{
+            mFragmentManager.beginTransaction().show(fragment).commit();
+        }
+    }
+
+    protected void showFragment(Fragment fragment,String tag){
+        if(mFragmentManager == null){
+            mFragmentManager = getSupportFragmentManager();
+        }
+        Fragment frag = mFragmentManager.findFragmentByTag(tag);
+        if(frag == null){
+            mFragmentManager.beginTransaction().add(fragment,tag).commit();
         }else{
             mFragmentManager.beginTransaction().show(fragment).commit();
         }
@@ -106,5 +94,36 @@ public abstract class BaseActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+    protected void toggleSoftInput(Context context){
+        InputMethodManager m=(InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        m.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+    }
+
+    protected void hideSoftInput(Activity context){
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(context.getCurrentFocus() != null){
+            imm.hideSoftInputFromWindow(context.getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+        }
+    }
+
+    protected void showProgressLoading(){
+        if(loadingDialog == null){
+            loadingDialog = LoadingDialog.getInstance("加载中...");
+        }
+        if(loadingDialog.isAdded()){
+            loadingDialog.dismiss();
+        }
+        loadingDialog.show(getSupportFragmentManager(),"loading");
+    }
+
+    protected void hideProgressLoading(){
+        if(loadingDialog != null && !loadingDialog.isCancelable()){
+            loadingDialog.dismiss();
+            loadingDialog = null;
+        }
+    }
+
+    protected void showEmpty(){}
 
 }

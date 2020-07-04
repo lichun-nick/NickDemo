@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_confirm_title"
+        style="@style/TextLightBlackTheme"
+        android:textSize="16sp"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/are_you_sure_to_delete_voucher"/>
+    <View
+        android:id="@+id/line_divider"
+        style="@style/CommonLine"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_confirm_title" />
+    <View
+        android:id="@+id/line_vertical_divider"
+        style="@style/CommonVerticalLine"
+        android:layout_height="40dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_divider"/>
+    <Button
+        android:id="@+id/btn_confirm_cancel"
+        style="@style/ButtonTheme"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/line_vertical_divider"
+        app:layout_constraintTop_toBottomOf="@id/line_divider"
+        android:text="@string/cancel"
+        android:textColor="@color/color_666666" />
+    <Button
+        android:id="@+id/btn_confirm_sure"
+        style="@style/ButtonTheme"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toRightOf="@id/line_vertical_divider"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line_divider"
+        android:text="@string/confirm"
+        android:textColor="@color/colorPrimary" />
+
+
+
+    <FrameLayout
+        android:id="@+id/loading_view"
+        android:layout_width = "wrap_content"
+        android:layout_height = "wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_confirm_title"
+        app:layout_constraintBottom_toBottomOf="parent">
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,7 +36,7 @@ public class VoucherDetailViewModel extends ViewModel {
         params.put("did",did);
         params.put("disclosure",object);
         Log.i("generateUrlByDID", "generateUrlByDID: " + object.toString());
-        params.put("domain_path", UrlConfig.GET_DID_URL_BY_VERIFIER);
+        params.put("domain_path", UrlConfig.GET_DID_URL_BY_VERIFIER_URL);
         return voucherDetailRepository.generateQRString(params);
 
     }

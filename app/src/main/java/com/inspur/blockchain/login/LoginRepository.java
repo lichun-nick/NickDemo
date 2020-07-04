@@ -27,7 +27,13 @@ public class LoginRepository {
             public void onSuccess(JSONObject jsonObject) {
                 mutableLiveData.postValue(jsonObject);
                 if(jsonObject.optBoolean(HttpResponse.RESPONSE_STATUS)){
-                    MmkvUtil.getInstance().putString(Keys.USER_TOKEN,jsonObject.optString(HttpResponse.RESPONSE_DATA));
+                    JSONObject data = jsonObject.optJSONObject(HttpResponse.RESPONSE_DATA);
+                    if(data != null){
+                        MmkvUtil.getInstance().putString(Keys.NICK_NAME,data.optString("nick_name"));
+                        MmkvUtil.getInstance().putString(Keys.USER_TOKEN,data.optString("token"));
+                        MmkvUtil.getInstance().putString(Keys.USER_ID,data.optString("user_id"));
+                    }
+
                 }
             }
 

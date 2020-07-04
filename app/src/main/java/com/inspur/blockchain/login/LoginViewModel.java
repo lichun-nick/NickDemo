@@ -6,6 +6,8 @@ import androidx.collection.ArrayMap;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.inspur.lib_base.util.Md5Util;
+
 import org.json.JSONObject;
 
 /**
@@ -25,7 +27,7 @@ public class LoginViewModel extends ViewModel {
         ArrayMap<String,String> params = new ArrayMap<>();
         params.put("phone",phone);
         if(TextUtils.equals(type,PASSWORD_LOGIN_TYPE)){
-            params.put("pwd",code);
+            params.put("pwd", Md5Util.encrypt32(code));
         }else if(TextUtils.equals(type,VERIFICATION_CODE_LOGIN_TYPE)){
             params.put("phone_code",code);
         }

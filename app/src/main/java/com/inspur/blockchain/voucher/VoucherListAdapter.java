@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.inspur.blockchain.Keys;
 import com.inspur.blockchain.R;
 import com.inspur.blockchain.model.VoucherListItemBean;
+import com.inspur.lib_base.mmkv.MmkvUtil;
 
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class VoucherListAdapter extends RecyclerView.Adapter<VoucherListAdapter.
     private Context context;
     private List<VoucherListItemBean> mList;
     private OnItemClickListener onItemClickListener;
+    private OnItemMoreClickListener onItemMoreClickListener;
 
     public VoucherListAdapter(Context context,List<VoucherListItemBean> mList){
         this.context = context;
@@ -40,12 +43,21 @@ public class VoucherListAdapter extends RecyclerView.Adapter<VoucherListAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         VoucherListItemBean bean = mList.get(position);
         holder.tvDid.setText(bean.getDid());
+        MmkvUtil.getInstance().putString(Keys.ID_CARD_DID,bean.getDid());
         holder.tvType.setText(bean.getCpt_name());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(onItemClickListener != null){
                     onItemClickListener.onItemClick(v,position);
+                }
+            }
+        });
+        holder.ivMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(onItemMoreClickListener != null){
+                    onItemMoreClickListener.onMoreClick(v,position);
                 }
             }
         });
@@ -67,13 +79,14 @@ public class VoucherListAdapter extends RecyclerView.Adapter<VoucherListAdapter.
         private ImageView ivLabel;
         private TextView tvDid;
         private TextView tvType;
+        private ImageView ivMore;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivLabel = itemView.findViewById(R.id.iv_list_item_voucher_tip);
             tvDid = itemView.findViewById(R.id.tv_list_item_did);
             tvType = itemView.findViewById(R.id.tv_list_item_type);
-
+            ivMore = itemView.findViewById(R.id.iv_list_item_voucher_more);
         }
     }
 
@@ -81,9 +94,15 @@ public class VoucherListAdapter extends RecyclerView.Adapter<VoucherListAdapter.
         this.onItemClickListener = onItemClickListener;
     }
 
-
+    public void setOnItemMoreClickListener(OnItemMoreClickListener onItemMoreClickListener){
+        this.onItemMoreClickListener = onItemMoreClickListener;
+    }
 
     public interface OnItemClickListener{
         void onItemClick(View v,int position);
+    }
+
+    public interface OnItemMoreClickListener{
+        void onMoreClick(View v,int position);
     }
 }

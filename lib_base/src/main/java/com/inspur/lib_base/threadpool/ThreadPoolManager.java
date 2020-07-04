@@ -19,7 +19,7 @@ public class ThreadPoolManager {
     /**
      * 两个核心线程，最多三个线程
      */
-    private final static ThreadPoolExecutor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(2, 3, 60, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), new BlockChainThreadFactory());
+    public final static ThreadPoolExecutor THREAD_POOL_EXECUTOR = new ThreadPoolExecutor(2, 3, 60, TimeUnit.SECONDS, new LinkedBlockingDeque<Runnable>(), new BlockChainThreadFactory());
 
     public static <T> Future<T> execute(Callable<T> callable){
         return THREAD_POOL_EXECUTOR.submit(callable);

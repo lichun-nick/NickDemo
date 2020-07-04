@@ -62,4 +62,14 @@
     <string name="total_properties">全部属性</string>
     <string name="property_preview">属性预览</string>
     <string name="the_following_properties_will_be_verified">将验证如下属性</string>
+    <string name="set_receive_voucher_properties">接收属性设置</string>
+    <string name="voucher_type">凭证类型</string>
+    <string name="receive_type">接收类型</string>
+    <string name="receive_property">接收属性</string>
+    <string name="receive_qr_code">接收码</string>
+    <string name="verify_property">验证属性</string>
+    <string name="verify_record">验证记录</string>
+    <string name="details">详情</string>
+    <string name="delete">删除</string>
+    <string name="are_you_sure_to_delete_voucher">确定要删除凭证吗？</string>
 </resources>

@@ -3,13 +3,17 @@ package com.inspur.blockchain;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import com.inspur.blockchain.voucher.receive.ScanShowRequestPropertiesActivity;
 import com.inspur.lib_base.base.BaseActivity;
+import com.inspur.lib_base.mmkv.MmkvUtil;
+import com.inspur.lib_base.util.ToastUtil;
 import com.inspur.lib_base.view.TitleView;
 
 
@@ -98,10 +102,23 @@ public class ScanActivity extends BaseActivity implements QRCodeView.Delegate {
     @Override
     public void onScanQRCodeSuccess(String result) {
         Log.i(TAG, "onScanQRCodeSuccess: " + result);
-        Intent intent = new Intent(this,ScanShowResultActivity.class);
-        intent.putExtra(Keys.QR_CODE_RESULT,result);
-        startActivity(intent);
-        finish();
+        if(TextUtils.isEmpty(MmkvUtil.getInstance().getString(Keys.ID_CARD_DID,""))){
+            ToastUtil.show(this,"尚没有可出示凭证");
+            return;
+        }
+        if(TextUtils.isEmpty(result)){
+            ToastUtil.show(this,"识别结果为空");
+        }else{
+            Intent intent;
+            if(result.startsWith("http") || result.startsWith("https")){
+                intent = new Intent(this, ScanShowVoucherDetailActivity.class);
+            }else{
+                intent = new Intent(this, ScanShowRequestPropertiesActivity.class);
+            }
+            intent.putExtra(Keys.QR_CODE_RESULT,result);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override

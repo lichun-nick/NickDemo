@@ -2,6 +2,8 @@ package com.inspur.blockchain.recognize;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.collection.ArrayMap;
@@ -12,11 +14,14 @@ import com.inspur.blockchain.HttpResponse;
 import com.inspur.blockchain.Keys;
 import com.inspur.blockchain.R;
 import com.inspur.blockchain.voucher.RequestVoucherViewModel;
+import com.inspur.icity.comp_seal.util.StatusBarUtil;
+import com.inspur.lib_base.LiveDataBus;
 import com.inspur.lib_base.base.BaseActivity;
 import com.inspur.lib_base.util.ToastUtil;
 import com.otaliastudios.cameraview.CameraListener;
 import com.otaliastudios.cameraview.CameraOptions;
 import com.otaliastudios.cameraview.CameraView;
+import com.otaliastudios.cameraview.size.SizeSelector;
 import com.otaliastudios.cameraview.size.SizeSelectors;
 
 import org.json.JSONObject;
@@ -28,6 +33,8 @@ import java.util.concurrent.CountDownLatch;
  */
 public class FaceRecognizeActivity extends BaseActivity {
 
+    private static final String TAG = "FaceRecognizeActivity";
+    private RelativeLayout rootView;
     private CameraView camera;
     private CountDownTimer countDownTimer;
     private CountDownLatch countDownLatch = new CountDownLatch(2);
@@ -44,6 +51,7 @@ public class FaceRecognizeActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        rootView = findViewById(R.id.rl_face_detect);
         camera = findViewById(R.id.camera);
         camera.setLifecycleOwner(this);
         camera.addCameraListener(new CameraActionListener());
@@ -62,6 +70,10 @@ public class FaceRecognizeActivity extends BaseActivity {
             @Override
             public void onFinish() {
                 countDownLatch.countDown();
+                Log.i(TAG, "onFinish: " + countDownLatch.getCount());
+                if(countDownLatch.getCount() == 0){
+                    finish();
+                }
             }
         };
         Bundle bundle = getIntent().getBundleExtra(Keys.VOUCHER_INFO);
@@ -74,13 +86,32 @@ public class FaceRecognizeActivity extends BaseActivity {
         requestVoucherViewModel.requestVoucher(params).observe(this, new Observer<JSONObject>() {
             @Override
             public void onChanged(JSONObject jsonObject) {
+                LiveDataBus.get().with("voucher_insert").setValue(true);
                 ToastUtil.show(getApplicationContext(),jsonObject.optString(HttpResponse.RESPONSE_MESSAGE));
                 countDownLatch.countDown();
+                if(countDownLatch.getCount() == 0){
+                    finish();
+                }
+                Log.i(TAG, "onChanged: " + countDownLatch.getCount());
             }
         });
+    }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if(hasFocus){
+            int width = rootView.getMeasuredWidth();
+            int height = rootView.getMeasuredHeight();
+            RelativeLayout.LayoutParams mParams = (RelativeLayout.LayoutParams) camera.getLayoutParams();
 
+            mParams.width = width * 2/3;
+            mParams.height = width * 2/3;
+            mParams.topMargin = height * 2/5 - width/3 ;
 
+            Log.i(TAG, "initView: "+ height + ":::" + width + "::::" + StatusBarUtil.getStatusBarHeight(this));
+            camera.setLayoutParams(mParams);
+        }
     }
 
     @Override

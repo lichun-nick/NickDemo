@@ -16,7 +16,6 @@ import com.inspur.blockchain.DigitalIdentityQrCodeActivity;
 import com.inspur.blockchain.Keys;
 import com.inspur.blockchain.R;
 import com.inspur.lib_base.base.BaseDialogFragment;
-import com.inspur.lib_base.view.LoadingLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +34,6 @@ public class ChoiceShowDialogFragment extends BaseDialogFragment {
     private AppCompatCheckBox cbShowBirthday;
     private AppCompatCheckBox cbShowNation;
     private AppCompatCheckBox cbShowLocation;
-    private LoadingLayout mLoadingLayout;
     /**
      * 凭证详情json,全部
      */
@@ -65,7 +63,9 @@ public class ChoiceShowDialogFragment extends BaseDialogFragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 cbSelectiveDisclosure.setChecked(!isChecked);
-                setCheckBoxStatus(isChecked);
+                if(isChecked){
+                    setCheckBoxStatus(true);
+                }
             }
         });
         cbSelectiveDisclosure = view.findViewById(R.id.cb_selective_disclosure);
@@ -73,7 +73,6 @@ public class ChoiceShowDialogFragment extends BaseDialogFragment {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 cbTotalProperties.setChecked(!isChecked);
-                setCheckBoxStatus(!isChecked);
             }
         });
         cbShowName = view.findViewById(R.id.cb_show_name);
@@ -136,14 +135,7 @@ public class ChoiceShowDialogFragment extends BaseDialogFragment {
                 deliverData();
             }
         });
-        mLoadingLayout = LoadingLayout.wrap(view.findViewById(R.id.loading_view));
-        mLoadingLayout.setBackgroundResource(R.drawable.shape_circle_translucent_black_bg);
-        mLoadingLayout.setLoading(R.layout._loading_layout_small_loading);
-        mLoadingLayout.showContent();
 
-        /**
-         * 获取数据
-         */
         getData();
     }
 
@@ -219,7 +211,7 @@ public class ChoiceShowDialogFragment extends BaseDialogFragment {
     }
 
     private void deliverData() {
-        showLoading();
+        showProgressLoading();
         JSONObject object = new JSONObject();
         Iterator<String> it = tags.keys();
         while (it.hasNext()){
@@ -232,7 +224,7 @@ public class ChoiceShowDialogFragment extends BaseDialogFragment {
         voucherDetailViewModel.generateUrlByDID(mDID,object).observe(this, new Observer<JSONObject>() {
             @Override
             public void onChanged(JSONObject s) {
-                hideLoading();
+                hideProgressLoading();
                 Intent intent = new Intent(requireContext(), DigitalIdentityQrCodeActivity.class);
                 if(s != null){
                     intent.putExtra(Keys.QR_CODE_PATH,s.optString(Keys.QR_CODE_PATH));
@@ -247,11 +239,5 @@ public class ChoiceShowDialogFragment extends BaseDialogFragment {
         });
     }
 
-    protected void showLoading(){
-        mLoadingLayout.showLoading();
-    }
 
-    protected void hideLoading(){
-        mLoadingLayout.showContent();
-    }
 }

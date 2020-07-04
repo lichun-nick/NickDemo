@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/tv_item_verify_history_date"
+        style="@style/TextLightBlackTheme"
+        android:text="2020年6月"
+        android:drawablePadding="5dp"
+        android:drawableRight="@mipmap/icon_black_triangle"/>
+
+    <LinearLayout
+        android:id="@+id/tv_item_verify_history_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="8dp"
+        android:elevation="4dp"
+        android:background="@drawable/shape_circle_white_bg"/>
+
+</LinearLayout>

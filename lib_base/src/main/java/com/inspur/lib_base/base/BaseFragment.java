@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.inspur.lib_base.view.LoadingLayout;
+import com.inspur.lib_base.view.LoadingDialog;
 
 
 /**
@@ -17,8 +17,7 @@ import com.inspur.lib_base.view.LoadingLayout;
  */
 public abstract class BaseFragment extends Fragment {
 
-
-    private LoadingLayout mLoadingLayout;
+    private LoadingDialog loadingDialog;
 
     /**
      * 获取layout id
@@ -40,7 +39,6 @@ public abstract class BaseFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mLoadingLayout = LoadingLayout.wrap(container);
         return inflater.inflate(getLayoutId(),container,false);
     }
 
@@ -51,20 +49,23 @@ public abstract class BaseFragment extends Fragment {
         initData();
     }
 
-    protected void showEmpty(){
-        mLoadingLayout.showEmpty();
-    }
-
-    protected void showError(){
-        mLoadingLayout.showError();
-    }
 
 
     protected void showProgressLoading(){
-        mLoadingLayout.showLoading();
+        if(loadingDialog == null){
+            loadingDialog = LoadingDialog.getInstance("加载中...");
+        }
+        if(loadingDialog.isAdded()){
+            loadingDialog.dismiss();
+        }
+        loadingDialog.show(getChildFragmentManager(),"loading");
     }
 
     protected void hideProgressLoading(){
-        mLoadingLayout.showContent();
+        if(loadingDialog != null && !loadingDialog.isCancelable()){
+            loadingDialog.dismiss();
+            loadingDialog = null;
+        }
     }
+
 }

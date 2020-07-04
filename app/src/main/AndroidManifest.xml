@@ -22,31 +22,38 @@
         tools:replace="android:theme">
 
         <activity android:name=".main.MainActivity"
-
             android:launchMode="singleTask">
-
-        </activity>
-        <activity android:name=".login.LoginActivity">
-
-        </activity>
-        <activity android:name=".welcome.WelcomeActivity"
-            android:theme="@style/WelcomeAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".login.LoginActivity">
+
+        </activity>
+        <activity android:name=".welcome.WelcomeActivity"
+            android:theme="@style/WelcomeAppTheme">
+
+        </activity>
         <activity android:name=".ScanActivity"
             android:screenOrientation="fullSensor"/>
         <activity android:name=".DigitalIdentityQrCodeActivity" />
         <activity android:name=".voucher.VoucherListActivity" />
-        <activity android:name=".voucher.RequestVoucherActivity" />
+        <activity android:name=".voucher.RequestVoucherActivity">
+
+        </activity>
         <activity android:name=".recognize.FaceRecognizeActivity"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/MainTheme"/>
+            android:theme="@style/MainTheme">
+
+        </activity>
         <activity android:name=".voucher.VoucherDetailActivity" />
-        <activity android:name=".ScanShowResultActivity" />
+        <activity android:name=".ScanShowVoucherDetailActivity" />
+        <activity android:name=".voucher.receive.ReceiveVoucherSettingsActivity" />
+        <activity android:name=".voucher.receive.ReceiveVoucherQrCodeActivity" />
+        <activity android:name=".voucher.receive.ScanShowRequestPropertiesActivity" />
+        <activity android:name=".voucher.HistoryListActivity" />
+        <activity android:name=".voucher.VerifyRecordDetailActivity" />
     </application>
 
 </manifest>

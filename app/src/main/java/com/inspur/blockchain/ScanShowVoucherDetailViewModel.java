@@ -4,19 +4,17 @@ import androidx.collection.ArrayMap;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.inspur.lib_base.mmkv.MmkvUtil;
-
 import org.json.JSONObject;
 
 /**
  * @author lichun
  */
-public class ScanResultShowViewModel extends ViewModel {
+public class ScanShowVoucherDetailViewModel extends ViewModel {
 
-    private ScanResultShowRepository scanResultShowRepository;
+    private ScanShowVoucherDetailRepository scanResultShowRepository;
 
-    public ScanResultShowViewModel(){
-        this.scanResultShowRepository = new ScanResultShowRepository();
+    public ScanShowVoucherDetailViewModel(){
+        this.scanResultShowRepository = new ScanShowVoucherDetailRepository();
     }
 
     public LiveData<JSONObject> requestData(String path){

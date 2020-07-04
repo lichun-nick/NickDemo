@@ -41,4 +41,15 @@
         <attr name="ttRightDrawable" format="reference"/>
         <attr name="ttTitleBackgroundColor" format="reference|color"/>
     </declare-styleable>
+    <declare-styleable name="FlexibleCheckBox">
+        <attr name="fcbTitleTextColor" format="color"/>
+        <attr name="fcbTitleTextSize" format="reference|dimension"/>
+        <attr name="fcbTitleTextStyle" format="reference|integer"/>
+        <attr name="fcbTitleText" format="reference|string"/>
+        <attr name="fcbBoxType" >
+            <flag name="circle" value="0"/>
+            <flag name="rectangle" value="1"/>
+        </attr>
+        <attr name="fcbChecked" format="boolean"/>
+    </declare-styleable>
 </resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.inspur.lib_base.view.TitleView
+        android:id="@+id/title_scan_show_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:ttTitleText="@string/app_name"
+        app:ttLeftDrawable="@mipmap/ic_nav_back" />
+
+    <TextView
+        android:id="@+id/tv_scan_show_who_request_properties"
+        style="@style/TextWhiteTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_scan_show_result"
+        android:layout_marginTop="34dp"
+        android:textSize="20sp"
+        android:text="XXX请求验证您的凭证"/>
+
+    <LinearLayout
+        android:id="@+id/ll_scan_result_show"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_scan_show_who_request_properties"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:padding="10dp"
+        android:background="@drawable/shape_circle_white_bg">
+        <include
+            android:id="@+id/include_request_voucher_type"
+            layout="@layout/list_item_scan_show_request_property"/>
+        <View
+            style="@style/CommonLine"/>
+        <include
+            android:id="@+id/include_request_voucher_properties"
+            layout="@layout/list_item_scan_show_request_property"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_scan_request_confirm"
+        style="@style/ButtonTheme"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        app:layout_constraintLeft_toLeftOf="@id/ll_scan_result_show"
+        app:layout_constraintRight_toRightOf="@id/ll_scan_result_show"
+        app:layout_constraintTop_toBottomOf="@+id/ll_scan_result_show"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_circle_white_bg"
+        android:text="@string/confirm"
+        android:textColor="@color/colorPrimary" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_id_qrcode_bottom_tip"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

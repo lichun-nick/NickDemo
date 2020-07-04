@@ -96,9 +96,9 @@ public class CountDownTextView extends AppCompatTextView implements LifecycleObs
                 }
             }
         }
-        if (context instanceof LifecycleOwner) {
+        /*if (context instanceof LifecycleOwner) {
             ((LifecycleOwner) context).getLifecycle().addObserver(this);
-        }
+        }*/
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

@@ -6,10 +6,14 @@ package com.inspur.blockchain;
 public class Keys {
 
     public static final String USER_TOKEN = "user_token";
+    public static final String NICK_NAME = "nick_name";
+    public static final String USER_ID = "user_id";
 
     public static final String VOUCHER_INFO = "voucher_info";
 
     public static final String CPT_ID = "cpt_id";
+    public static final String ID_CARD_CPT_ID = "id_card_cpt_id";
+    public static final String ID_CARD_DID = "id_card_did";
     public static final String NAME = "姓名";
     public static final String SEX = "性别";
     public static final String BIRTHDAY = "出生日期";
@@ -20,6 +24,7 @@ public class Keys {
     public static final String VOUCHER_DESCRIPTION = "desc";
 
     public static final String DID = "did";
+    public static final String VERIFY_TIME = "verify_time";
 
     public static final String USER_VOUCHER_INFO = "voucher_info";
     public static final String DISCLOSURE = "disclosure";

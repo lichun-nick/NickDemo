@@ -163,7 +163,6 @@ public class PasswordLoginFragment extends BaseFragment {
         loginViewModel.userLogin(LoginViewModel.PASSWORD_LOGIN_TYPE,nameEditText.getText().toString().trim(),passwordEditText.getText().toString().trim()).observe(this, new Observer<JSONObject>() {
             @Override
             public void onChanged(JSONObject jsonObject) {
-
                 boolean status = jsonObject.optBoolean(HttpResponse.RESPONSE_STATUS);
                 if(status){
                     NavHostFragment.findNavController(PasswordLoginFragment.this).navigate(R.id.activity_main);

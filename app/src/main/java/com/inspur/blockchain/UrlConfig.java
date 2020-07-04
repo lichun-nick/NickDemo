@@ -39,6 +39,10 @@ public final class UrlConfig {
      */
     public static final String REQUEST_VOUCHER_URL = DEV_HOST + "ibid/issue/application";
     /**
+     * 删除凭证
+     */
+    public static final String DELETE_VOUCHER_URL = DEV_HOST + "ibid/issue/delete";
+    /**
      * 获取凭证类型列表
      */
     public static final String QUERY_VOUCHER_TYPES_URL = DEV_HOST + "ibid/issue/selissuer";
@@ -49,14 +53,34 @@ public final class UrlConfig {
     /**
      * 主动出示凭证生成url
      */
-    public static final String GENERATE_URL_BY_DID = DEV_HOST + "private/userAgent/show/card";
+    public static final String GENERATE_URL_BY_DID_URL = DEV_HOST + "private/userAgent/show/card";
     /**
      * 验证者获取凭证的url
      */
-    public static final String GET_DID_URL_BY_VERIFIER = DEV_HOST + "ibid/userAgent/vp/get";
+    public static final String GET_DID_URL_BY_VERIFIER_URL = DEV_HOST + "ibid/userAgent/vp/get";
     /**
      * 扫码识别访问获取数据
      */
-    public static final String SCAN_CODE_GET_DATA = DEV_HOST + "private/verifier/valid/card";
+    public static final String SCAN_CODE_GET_DATA_URL = DEV_HOST + "private/verifier/valid/card";
+    /**
+     * 接收凭证属性设置
+     */
+    public static final String RECEIVE_VOUCHER_SETTINGS_URL = DEV_HOST + "private/verifier/code/show";
+    /**
+     * 接收凭证属性推送地址
+     */
+    public static final String RECEIVE_VOUCHER_SETTINGS_PUSH_URL = DEV_HOST + "private/userAgent/vp/push";
+    /**
+     * 获取验证记录列表
+     */
+    public static final String VERIFY_HISTORY_LIST_URL = DEV_HOST + "private/userAgent/valid/list";
+    /**
+     * 获取验证记录详情
+     */
+    public static final String GET_VERIFY_HISTORY_DETAIL_URL = DEV_HOST + "private/userAgent/valid/info";
+    /**
+     * 查询申请是否确认
+     */
+    public static final String QUERY_IF_ACCEPT_SEE_VOUCHER_URL = DEV_HOST + "private/verifier/pushed/valid";
 
 }

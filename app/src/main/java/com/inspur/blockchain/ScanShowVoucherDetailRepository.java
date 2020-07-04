@@ -11,11 +11,11 @@ import org.json.JSONObject;
 /**
  * @author lichun
  */
-public class ScanResultShowRepository extends BaseRepository{
+public class ScanShowVoucherDetailRepository extends BaseRepository{
 
     public LiveData<JSONObject> requestData(ArrayMap<String,String> params){
         final MutableLiveData<JSONObject> mutableLiveData = new MutableLiveData<>();
-        defaultHeaders().url(UrlConfig.SCAN_CODE_GET_DATA).body(params).post().build().requestJson(new NetCallback<JSONObject>() {
+        defaultHeaders().url(UrlConfig.SCAN_CODE_GET_DATA_URL).body(params).post().build().requestJson(new NetCallback<JSONObject>() {
             @Override
             public void onSuccess(JSONObject jsonObject) {
                 mutableLiveData.postValue(jsonObject);

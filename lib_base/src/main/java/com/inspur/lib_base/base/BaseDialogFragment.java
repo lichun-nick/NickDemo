@@ -10,12 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.inspur.lib_base.view.LoadingDialog;
+
 
 /**
  * @author lichun
  */
 public abstract class BaseDialogFragment extends DialogFragment {
 
+    private LoadingDialog loadingDialog;
     /**
      * 获取view layout
      * @return
@@ -24,13 +27,6 @@ public abstract class BaseDialogFragment extends DialogFragment {
 
     public abstract void initView(View view);
 
-
-
-    @NonNull
-    @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        return super.onCreateDialog(savedInstanceState);
-    }
 
     @Nullable
     @Override
@@ -42,8 +38,24 @@ public abstract class BaseDialogFragment extends DialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView(view);
+        setCancelable(true);
     }
 
+    protected void showProgressLoading(){
+        if(loadingDialog == null){
+            loadingDialog = LoadingDialog.getInstance("加载中...");
+        }
+        if(loadingDialog.isAdded()){
+            loadingDialog.dismiss();
+        }
+        loadingDialog.show(getChildFragmentManager(),"loading");
+    }
 
+    protected void hideProgressLoading(){
+        if(loadingDialog != null && !loadingDialog.isCancelable()){
+            loadingDialog.dismiss();
+            loadingDialog = null;
+        }
+    }
 
 }

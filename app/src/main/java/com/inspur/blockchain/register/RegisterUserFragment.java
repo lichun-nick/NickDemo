@@ -19,6 +19,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.inspur.blockchain.HttpResponse;
 import com.inspur.blockchain.R;
 import com.inspur.lib_base.base.BaseFragment;
+import com.inspur.lib_base.util.Md5Util;
 import com.inspur.lib_base.util.ToastUtil;
 import com.inspur.lib_base.view.CountDownTextView;
 import com.inspur.lib_base.view.TitleView;
@@ -181,8 +182,8 @@ public class RegisterUserFragment extends BaseFragment {
         ArrayMap<String,String> params = new ArrayMap<>();
         params.put("phone",phoneEt.getText().toString().trim());
         params.put("phone_code",codeEt.getText().toString().trim());
-        params.put("pwd",passwordEt.getText().toString().trim());
-        params.put("confirm_pwd",passwordConfirmEt.getText().toString().trim());
+        params.put("pwd", Md5Util.encrypt32(passwordEt.getText().toString().trim()));
+        params.put("confirm_pwd",Md5Util.encrypt32(passwordConfirmEt.getText().toString().trim()));
         params.put("email",emailEt.getText().toString().trim());
         params.put("nick_name",nickEt.getText().toString().trim());
         registerUserViewModel.registerUser(params).observe(this, new Observer<JSONObject>() {

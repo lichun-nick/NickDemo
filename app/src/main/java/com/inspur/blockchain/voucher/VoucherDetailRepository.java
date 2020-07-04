@@ -125,7 +125,7 @@ public class VoucherDetailRepository extends BaseRepository {
 
     public LiveData<JSONObject> generateQRString(ArrayMap<String,Object> params){
         final MutableLiveData<JSONObject> mutableLiveData = new MutableLiveData<>();
-        defaultHeaders().url(UrlConfig.GENERATE_URL_BY_DID).mixedBody(params).post().build().requestJson(new NetCallback<JSONObject>() {
+        defaultHeaders().url(UrlConfig.GENERATE_URL_BY_DID_URL).mixedBody(params).post().build().requestJson(new NetCallback<JSONObject>() {
             @Override
             public void onSuccess(JSONObject jsonObject) {
                 if(jsonObject.optBoolean(HttpResponse.RESPONSE_STATUS)){

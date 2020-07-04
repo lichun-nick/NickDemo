@@ -34,12 +34,12 @@ class VoucherListCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        return oldList.get(oldItemPosition).equals(newList.get(newItemPosition));
+        return oldList.get(oldItemPosition).equals(newList.get(newItemPosition)) && (oldItemPosition == newItemPosition);
     }
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        return false;
+        return oldList.get(oldItemPosition).getDid().equals(newList.get(newItemPosition).getDid());
     }
 
     @Nullable

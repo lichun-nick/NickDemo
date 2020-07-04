@@ -35,6 +35,8 @@ dependencies {
     //data store
     implementation 'com.tencent:mmkv-static:1.1.1'
     implementation 'com.google.code.gson:gson:2.8.6'
+    //滚动选择器
+    api 'com.contrarywind:Android-PickerView:4.1.9'
     //test
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

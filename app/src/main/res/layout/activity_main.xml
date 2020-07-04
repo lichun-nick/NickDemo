@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     tools:context=".main.MainActivity">
     <ImageView
         android:layout_width="match_parent"
@@ -100,6 +101,7 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="19dp"
+        android:elevation="4dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fl_home_first"
@@ -114,6 +116,7 @@
             app:layout_constraintTop_toTopOf="parent"/>
 
         <include
+            android:id="@+id/view_voucher_count"
             layout="@layout/include_item_voucher_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,6 +126,7 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <include
+            android:id="@+id/view_verify_count"
             layout="@layout/include_item_verify_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,108 +134,132 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_home_verify_max"
+    <ScrollView
+        android:id="@+id/sv_main"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:orientation="vertical"
-        android:paddingTop="14dp"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        android:overScrollMode="never"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cl_home_top"
-        android:background="@drawable/shape_circle_white_bg">
-
-        <TextView
-            android:id="@+id/tv_home_verify_max_did"
-            style="@style/TextBlackTheme"
-            android:gravity="start|center_vertical"
-            android:textColor="@color/color_333333"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="DID:XXXXXXXXXXXXXXX"/>
-        <TextView
-            android:id="@+id/tv_home_verify_did_max_count"
-            style="@style/TextBlackTheme"
-            android:gravity="start|center_vertical"
-            android:textColor="@color/color_333333"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="被验证12次"/>
-
-        <TextView
-            style="@style/TextBlackTheme"
-            android:textColor="@color/color_333333"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="@string/the_voucher_of_max_verification"/>
-
-        <View
-            style="@style/CommonLine"
-            android:layout_marginTop="19dp"/>
-
-        <TextView
-            style="@style/ButtonTheme"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <LinearLayout
+            android:id="@+id/ll_main_show"
             android:layout_width="match_parent"
-            android:textColor="@color/colorPrimary"
-            android:text="@string/see"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/ll_home_verify_record"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:orientation="vertical"
-        android:paddingTop="14dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_home_verify_max"
-        android:background="@drawable/shape_circle_white_bg">
-        <TextView
-            android:id="@+id/tv_home_verify_record_detail"
-            style="@style/TextBlackTheme"
-            android:gravity="start|center_vertical"
-            android:textColor="@color/color_333333"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="DID:XXXXXXXXXXXXXXX"/>
-        <TextView
-            android:id="@+id/tv_home_verify_record_time"
-            style="@style/TextBlackTheme"
-            android:textColor="@color/color_999999"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="被验证12次"/>
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/ll_home_verify_max"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:paddingTop="14dp"
+                android:elevation="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cl_home_top"
+                android:background="@drawable/shape_circle_white_bg">
 
-        <TextView
-            android:id="@+id/tv_home_verify_record_hash"
-            style="@style/TextBlackTheme"
-            android:gravity="start|center_vertical"
-            android:textColor="@color/colorPrimary"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="@string/the_voucher_of_max_verification"/>
+                <TextView
+                    android:id="@+id/tv_home_verify_max_did"
+                    style="@style/TextBlackTheme"
+                    android:gravity="start|center_vertical"
+                    android:textColor="@color/color_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="DID:XXXXXXXXXXXXXXX"/>
+                <TextView
+                    android:id="@+id/tv_home_verify_did_max_count"
+                    style="@style/TextBlackTheme"
+                    android:gravity="start|center_vertical"
+                    android:textColor="@color/color_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="被验证12次"/>
 
-        <View
-            style="@style/CommonLine"
-            android:layout_marginTop="19dp"/>
+                <TextView
+                    style="@style/TextBlackTheme"
+                    android:textColor="@color/color_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/the_voucher_of_max_verification"/>
 
-        <TextView
-            style="@style/ButtonTheme"
-            android:layout_width="match_parent"
-            android:textColor="@color/colorPrimary"
-            android:text="@string/see"/>
+                <View
+                    style="@style/CommonLine"
+                    android:layout_marginTop="19dp"/>
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_see_verify_max_count"
+                    style="@style/ButtonTheme"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/see"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_home_verify_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical"
+                android:paddingTop="14dp"
+                android:elevation="4dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_home_verify_max"
+                android:background="@drawable/shape_circle_white_bg">
+                <TextView
+                    android:id="@+id/tv_home_verify_record_detail"
+                    style="@style/TextBlackTheme"
+                    android:gravity="start|center_vertical"
+                    android:textColor="@color/color_333333"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="DID:XXXXXXXXXXXXXXX"/>
+                <TextView
+                    android:id="@+id/tv_home_verify_record_time"
+                    style="@style/TextBlackTheme"
+                    android:textColor="@color/color_999999"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="被验证12次"/>
+
+                <TextView
+                    android:id="@+id/tv_home_verify_record_hash"
+                    style="@style/TextBlackTheme"
+                    android:gravity="start|center_vertical"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="@string/the_voucher_of_max_verification"/>
+
+                <View
+                    style="@style/CommonLine"
+                    android:layout_marginTop="19dp"/>
+
+                <TextView
+                    android:id="@+id/tv_see_verify_history"
+                    style="@style/ButtonTheme"
+                    android:layout_width="match_parent"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/see"/>
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
+        </LinearLayout>
+    </ScrollView>
+
 
     <ImageView
         android:id="@+id/iv_home_bottom_tip"
