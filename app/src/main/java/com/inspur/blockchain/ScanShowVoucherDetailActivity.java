@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.inspur.lib_base.LiveDataBus;
 import com.inspur.lib_base.base.BaseActivity;
 import com.inspur.lib_base.view.TitleView;
 
@@ -35,9 +36,10 @@ public class ScanShowVoucherDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected int wrapLayoutId() {
-        return 0;
+    protected void initStateView() {
+
     }
+
 
     @Override
     protected void initView() {
@@ -45,6 +47,7 @@ public class ScanShowVoucherDetailActivity extends BaseActivity {
         titleView.setDelegate(new TitleView.Delegate() {
             @Override
             public void onClickLeft(View v) {
+                LiveDataBus.get().with("refresh_main").setValue(true);
                 finish();
             }
 

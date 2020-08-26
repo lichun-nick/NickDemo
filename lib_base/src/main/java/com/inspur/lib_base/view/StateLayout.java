@@ -27,11 +27,6 @@ public class StateLayout extends FrameLayout {
     public static final int LAYOUT_LOADING_ID = 1;
 
     /**
-     *  内容id
-     */
-    public static final int LAYOUT_CONTENT_ID = 2;
-
-    /**
      *  异常id
      */
     public static final int LAYOUT_ERROR_ID = 3;
@@ -91,9 +86,7 @@ public class StateLayout extends FrameLayout {
 
     private void showViewByType(int type){
         int layoutId = layoutManager.contentLayoutResId;
-        if(type == LAYOUT_CONTENT_ID){
-            layoutId = layoutManager.contentLayoutResId;
-        }else if(type == LAYOUT_LOADING_ID){
+        if(type == LAYOUT_LOADING_ID){
             layoutId = layoutManager.loadingLayoutResId;
         }else if(type == LAYOUT_EMPTY_DATA_ID){
             layoutId = layoutManager.emptyDataRetryViewId;
@@ -110,9 +103,6 @@ public class StateLayout extends FrameLayout {
         }
     }
 
-    public void showContent(){
-        showViewByType(LAYOUT_CONTENT_ID);
-    }
 
     public void showEmptyData(){
        showViewByType(LAYOUT_EMPTY_DATA_ID);

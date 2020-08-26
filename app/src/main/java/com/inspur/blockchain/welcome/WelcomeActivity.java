@@ -29,9 +29,10 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     @Override
-    protected int wrapLayoutId() {
-        return 0;
+    protected void initStateView() {
+
     }
+
 
     @Override
     protected void initView() {

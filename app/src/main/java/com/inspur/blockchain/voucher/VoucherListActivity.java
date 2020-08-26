@@ -3,17 +3,13 @@ package com.inspur.blockchain.voucher;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.PopupMenu;
+
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.PopupWindowCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -28,7 +24,7 @@ import com.inspur.icity.comp_seal.IDS;
 import com.inspur.icity.comp_seal.StartServerListener;
 import com.inspur.icity.comp_seal.util.DisplayUtil;
 import com.inspur.lib_base.LiveDataBus;
-import com.inspur.lib_base.base.BaseActivity;
+import com.inspur.lib_base.base.BaseStateActivity;
 import com.inspur.lib_base.util.ToastUtil;
 import com.inspur.lib_base.view.TitleView;
 
@@ -40,7 +36,7 @@ import java.util.Objects;
  * @author lichun
  * 凭证列表页
  */
-public class VoucherListActivity extends BaseActivity {
+public class VoucherListActivity extends BaseStateActivity {
 
     private static final String TAG = "VoucherListActivity";
     private TextView tvVoucherCount;
@@ -49,15 +45,13 @@ public class VoucherListActivity extends BaseActivity {
     private VoucherListViewModel viewModel;
     private PopupWindow mPopupWindow;
 
+
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_voucher_list;
     }
 
-    @Override
-    protected int wrapLayoutId() {
-        return R.id.fl_voucher_status;
-    }
 
     @Override
     protected void initView() {
@@ -104,6 +98,7 @@ public class VoucherListActivity extends BaseActivity {
                 showPopupWindow(v,position);
             }
         });
+
 
     }
 
@@ -187,34 +182,11 @@ public class VoucherListActivity extends BaseActivity {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate: ");
+    protected int wrapLayoutId() {
+        return R.id.fl_voucher_status;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i(TAG, "onStart: ");
-    }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.i(TAG, "onRestart: ");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i(TAG, "onPause: ");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i(TAG, "onStop: ");
-    }
 
     @Override
     protected void onDestroy() {

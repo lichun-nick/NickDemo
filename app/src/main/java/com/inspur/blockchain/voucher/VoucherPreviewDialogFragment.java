@@ -73,6 +73,7 @@ public class VoucherPreviewDialogFragment extends BaseDialogFragment {
     }
 
     private void deliverData() {
+        showProgressLoading();
         JSONObject object = new JSONObject();
         JSONObject tags = jsonInfo.optJSONObject("tag");
         Iterator<String> it = Objects.requireNonNull(tags).keys();
@@ -86,6 +87,7 @@ public class VoucherPreviewDialogFragment extends BaseDialogFragment {
         voucherDetailViewModel.generateUrlByDID(mDID,object).observe(this, new Observer<JSONObject>() {
             @Override
             public void onChanged(JSONObject s) {
+                hideProgressLoading();
                 Intent intent = new Intent(requireContext(), DigitalIdentityQrCodeActivity.class);
                 if(s != null){
                     intent.putExtra(Keys.QR_CODE_PATH,s.optString(Keys.QR_CODE_PATH));

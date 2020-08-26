@@ -9,16 +9,16 @@ import com.inspur.lib_base.base.BaseActivity;
  */
 public class LoginActivity extends BaseActivity {
 
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_login;
     }
 
     @Override
-    protected int wrapLayoutId() {
-        return 0;
+    protected void initStateView() {
+
     }
+
 
     @Override
     protected void initView() {

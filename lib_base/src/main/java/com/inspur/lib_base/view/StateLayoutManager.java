@@ -1,6 +1,7 @@
 package com.inspur.lib_base.view;
 
 import android.content.Context;
+import android.view.View;
 import android.view.ViewGroup;
 
 /**
@@ -51,12 +52,18 @@ public final class StateLayoutManager {
     }
 
     public void showLoading(){
+        show();
         stateLayout.showLoading();
     }
 
-    public void showContent(){
-        stateLayout.showContent();
+    public void show(){
+        stateLayout.setVisibility(View.VISIBLE);
     }
+
+    public void dismiss(){
+        stateLayout.setVisibility(View.GONE);
+    }
+
 
     public void showNetWorkError(){
         stateLayout.showNetWorkError();

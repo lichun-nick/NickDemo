@@ -1,12 +1,10 @@
 package com.inspur.blockchain.voucher;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.view.View;
 
 import androidx.collection.ArrayMap;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -17,10 +15,9 @@ import com.inspur.blockchain.Keys;
 import com.inspur.blockchain.R;
 import com.inspur.blockchain.model.VerifyHistoryItemBean;
 import com.inspur.lib_base.base.BaseActivity;
+import com.inspur.lib_base.base.BaseStateActivity;
 import com.inspur.lib_base.view.StateLayoutManager;
 import com.inspur.lib_base.view.TitleView;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +27,8 @@ import java.util.Objects;
  * @author lichun
  * 验证记录列表
  */
-public class HistoryListActivity extends BaseActivity {
+public class VerifyHistoryListActivity extends BaseStateActivity {
 
-    private StateLayoutManager stateLayoutManager;
     private HistoryListAdapter mAdapter;
     private List<VerifyHistoryItemBean> mList;
 
@@ -43,8 +39,9 @@ public class HistoryListActivity extends BaseActivity {
 
     @Override
     protected int wrapLayoutId() {
-        return 0;
+        return R.id.fl_history_list;
     }
+
 
     @Override
     protected void initView() {
@@ -70,7 +67,7 @@ public class HistoryListActivity extends BaseActivity {
         mAdapter.setOnItemClickListener(new HistoryListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                Intent intent = new Intent(HistoryListActivity.this,VerifyRecordDetailActivity.class);
+                Intent intent = new Intent(VerifyHistoryListActivity.this,VerifyRecordDetailActivity.class);
                 intent.putExtra(Keys.DID,mList.get(position).getDid());
                 intent.putExtra(Keys.VERIFY_TIME,mList.get(position).getTrace_time());
                 startActivity(intent);
@@ -79,13 +76,13 @@ public class HistoryListActivity extends BaseActivity {
 
         recyclerView.setAdapter(mAdapter);
 
-        stateLayoutManager = new StateLayoutManager.Builder(this).emptyView(R.layout._loading_layout_empty).build();
 
     }
 
     @Override
     protected void initData() {
         VerifyHistoryListViewModel verifyHistoryListViewModel = new ViewModelProvider(this).get(VerifyHistoryListViewModel.class);
+        showProgressLoading();
         verifyHistoryListViewModel.requestHistoryList(new ArrayMap<String, String>()).observe(this, new Observer<List<VerifyHistoryItemBean>>() {
             @Override
             public void onChanged(List<VerifyHistoryItemBean> verifyHistoryItemBeans) {
@@ -93,8 +90,9 @@ public class HistoryListActivity extends BaseActivity {
                 if(verifyHistoryItemBeans != null && verifyHistoryItemBeans.size() > 0){
                     mList.addAll(verifyHistoryItemBeans);
                     mAdapter.notifyDataSetChanged();
+                    hideProgressLoading();
                 }else{
-                    stateLayoutManager.showEmptyData();
+                    showEmpty();
                 }
             }
         });

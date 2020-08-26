@@ -19,35 +19,32 @@ import com.inspur.blockchain.ScanActivity;
 import com.inspur.blockchain.Translate;
 import com.inspur.blockchain.model.MainInfoBean;
 import com.inspur.blockchain.model.VoucherTypeListBean;
-import com.inspur.blockchain.voucher.HistoryListActivity;
+import com.inspur.blockchain.voucher.VerifyHistoryListActivity;
 import com.inspur.blockchain.voucher.RequestVoucherViewModel;
 import com.inspur.blockchain.voucher.VerifyRecordDetailActivity;
 import com.inspur.blockchain.voucher.VoucherDetailActivity;
 import com.inspur.blockchain.voucher.receive.ReceiveVoucherSettingsActivity;
 import com.inspur.blockchain.voucher.VoucherListActivity;
-import com.inspur.lib_base.base.BaseActivity;
+import com.inspur.lib_base.base.BaseStateActivity;
 import com.inspur.lib_base.mmkv.MmkvUtil;
-import com.inspur.lib_base.view.StateLayoutManager;
 
 /**
  * @author lichun
  * 主页面
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseStateActivity {
 
     private static final String TAG = "MainActivity";
     private TextView tvVoucherCount;
     private TextView tvVerifyCount;
-    private LinearLayout llMaxVoucher;
     private TextView tvVoucherMaxDid;
     private TextView tvVoucherMaxCount;
     private TextView tvVerifyDetail;
     private TextView tvVerifyTime;
     private TextView tvVerifyHash;
-    private LinearLayout llVerifyRecorder;
-    private LinearLayout llMainContent;
+    private LinearLayout llVerifyMax;
+    private LinearLayout llVerifyRecent;
 
-    private StateLayoutManager stateLayoutManager;
 
     private String mVerifyMaxDid;
     private String mRecentDid;
@@ -60,10 +57,6 @@ public class MainActivity extends BaseActivity {
         return R.layout.activity_main;
     }
 
-    @Override
-    protected int wrapLayoutId() {
-        return 0;
-    }
 
     @Override
     protected void initView() {
@@ -94,22 +87,21 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.view_verify_count).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(HistoryListActivity.class);
+                startActivity(VerifyHistoryListActivity.class);
             }
         });
 
         tvVerifyCount = findViewById(R.id.tv_item_verify_count);
         tvVoucherCount = findViewById(R.id.tv_item_voucher_count);
-        llMaxVoucher = findViewById(R.id.ll_home_verify_max);
-        llVerifyRecorder = findViewById(R.id.ll_home_verify_record);
 
+        llVerifyMax = findViewById(R.id.ll_home_verify_max);
+        llVerifyRecent = findViewById(R.id.ll_home_verify_record);
         tvVoucherMaxDid = findViewById(R.id.tv_home_verify_max_did);
         tvVoucherMaxCount = findViewById(R.id.tv_home_verify_did_max_count);
         tvVerifyDetail = findViewById(R.id.tv_home_verify_record_detail);
         tvVerifyTime = findViewById(R.id.tv_home_verify_record_time);
         tvVerifyHash = findViewById(R.id.tv_home_verify_record_hash);
 
-        llMainContent = findViewById(R.id.ll_main_show);
 
         findViewById(R.id.tv_see_verify_max_count).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,11 +122,6 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        StateLayoutManager.Builder stateBuilder = new StateLayoutManager.Builder(this);
-        stateBuilder.emptyView(R.layout._loading_layout_empty);
-        stateBuilder.loadingView(R.layout._loading_layout_loading);
-        stateLayoutManager = stateBuilder.build();
-        llMainContent.addView(stateLayoutManager.getStateLayout());
     }
 
     @Override
@@ -162,20 +149,21 @@ public class MainActivity extends BaseActivity {
                 if(countBean.getDid_counts() <= 0){
                     tvVerifyCount.setText("0");
                     tvVoucherCount.setText("0");
-                    llMaxVoucher.setVisibility(View.GONE);
-                    llVerifyRecorder.setVisibility(View.GONE);
-                    stateLayoutManager.showEmptyData();
+                    showEmptyData();
                 }else{
                     tvVoucherCount.setText(String.valueOf(countBean.getDid_counts()));
                     tvVerifyCount.setText(String.valueOf(countBean.getValid_dids()));
                     int validCount = countBean.getValid_dids();
                     if(validCount <= 0){
-                        llMaxVoucher.setVisibility(View.GONE);
-                        llVerifyRecorder.setVisibility(View.GONE);
+                        showEmptyData();
                     }else{
-                        llMaxVoucher.setVisibility(View.VISIBLE);
-                        llVerifyRecorder.setVisibility(View.VISIBLE);
                         MainInfoBean.ValidBean validBean = mainInfoBean.getValid();
+                        if(validBean == null){
+                            showEmptyData();
+                            return;
+                        }
+                        llVerifyMax.setVisibility(View.VISIBLE);
+                        llVerifyRecent.setVisibility(View.VISIBLE);
                         tvVoucherMaxDid.setText(mVerifyMaxDid = validBean.getDid());
                         SpannableString ss = new SpannableString("被验证"+validBean.getValid_max()+"次");
                         RelativeSizeSpan relativeSizeSpan = new RelativeSizeSpan(2f);
@@ -197,14 +185,26 @@ public class MainActivity extends BaseActivity {
                             sb.append(Translate.getChineseName(item)).append(",");
                         }
                         Log.i(TAG, "onChanged: " + sb.toString());
-                        tvVerifyDetail.setText(recentBean.getNick_name() +"验证了您的"+ sb.toString().substring(0,sb.length()-2));
+                        tvVerifyDetail.setText(recentBean.getNick_name() +"验证了您的"+ sb.toString().substring(0,sb.length()-1));
                         tvVerifyTime.setText(recentBean.getTrace_time());
                         tvVerifyHash.setText(recentBean.getTx_hash());
+                        hideProgressLoading();
                     }
                 }
-                hideProgressLoading();
-
             }
         });
     }
+
+    @Override
+    protected int wrapLayoutId() {
+        return R.id.ll_main_show;
+    }
+
+
+    private void showEmptyData(){
+        llVerifyRecent.setVisibility(View.GONE);
+        llVerifyMax.setVisibility(View.GONE);
+        showEmpty();
+    }
+
 }

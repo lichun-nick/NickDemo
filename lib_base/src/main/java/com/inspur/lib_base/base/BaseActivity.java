@@ -28,7 +28,10 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     protected abstract int getLayoutId();
 
-    protected abstract int wrapLayoutId();
+    /**
+     * 初始化状态页面
+     */
+    protected abstract void initStateView();
 
     /**
      * 初始化view
@@ -44,6 +47,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        initStateView();
         initView();
         initData();
     }
@@ -118,12 +122,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void hideProgressLoading(){
-        if(loadingDialog != null && !loadingDialog.isCancelable()){
+        if(loadingDialog != null){
             loadingDialog.dismiss();
             loadingDialog = null;
         }
     }
 
-    protected void showEmpty(){}
 
 }

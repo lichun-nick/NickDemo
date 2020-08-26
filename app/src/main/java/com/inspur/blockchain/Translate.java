@@ -15,8 +15,10 @@ public class Translate {
     private static Map<String,String> reverseWords = new HashMap<>(10);
     static{
         words.put("nation","民族");
+        words.put("natio","民族");
         words.put("dob","出生日期");
         words.put("name","姓名");
+        words.put("nam","姓名");
         words.put("sex","性别");
         words.put("tx_hash","交易哈希");
         words.put("issuer_name","签发人");

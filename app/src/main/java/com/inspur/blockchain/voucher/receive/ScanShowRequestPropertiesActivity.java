@@ -22,8 +22,6 @@ import com.inspur.lib_base.view.TitleView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Iterator;
-import java.util.Objects;
 
 /**
  * @author lichun
@@ -44,9 +42,10 @@ public class ScanShowRequestPropertiesActivity extends BaseActivity {
     }
 
     @Override
-    protected int wrapLayoutId() {
-        return 0;
+    protected void initStateView() {
+
     }
+
 
     @Override
     protected void initView() {

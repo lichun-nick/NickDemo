@@ -38,9 +38,10 @@ public class VerifyRecordDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected int wrapLayoutId() {
-        return R.id.cl_voucher_detail_parent;
+    protected void initStateView() {
+
     }
+
 
     @Override
     protected void initView() {
@@ -85,7 +86,7 @@ public class VerifyRecordDetailActivity extends BaseActivity {
                                 value = value.substring(0,4)+"****"+value.substring(value.length()-4);
                                 addContent("交易哈希",value.toUpperCase(),true);
                             }else if(TextUtils.equals(key,"verifier_props")){
-                                value = value.substring(1,key.length()-1);
+                                value = value.substring(1,value.length()-1);
                                 String[] properties = value.split(",");
                                 StringBuilder content= new StringBuilder();
                                 for (String item:properties) {

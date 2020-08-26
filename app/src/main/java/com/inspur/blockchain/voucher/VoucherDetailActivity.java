@@ -36,9 +36,10 @@ public class VoucherDetailActivity extends BaseActivity {
     }
 
     @Override
-    protected int wrapLayoutId() {
-        return R.id.cl_voucher_detail_parent;
+    protected void initStateView() {
+
     }
+
 
     @Override
     protected void initView() {

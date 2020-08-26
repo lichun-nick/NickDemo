@@ -38,7 +38,7 @@ public class ReceiveVoucherQrCodeViewModel extends ViewModel {
         Callable<Bitmap> callable = new Callable<Bitmap>() {
             @Override
             public Bitmap call() throws Exception {
-                return QRCodeEncoder.syncEncodeQRCode(msg, BGAQRCodeUtil.dp2px(BlockChainApplication.getInstance(), 196), Color.parseColor("#ff0000"), BitmapFactory.decodeResource(context.getResources(),R.mipmap.icon_white_label));
+                return QRCodeEncoder.syncEncodeQRCode(msg, BGAQRCodeUtil.dp2px(BlockChainApplication.getInstance(), 196), Color.parseColor("#319DFD"), BitmapFactory.decodeResource(context.getResources(),R.mipmap.icon_white_label));
             }
         };
         try {

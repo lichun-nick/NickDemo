@@ -37,9 +37,10 @@ public class ScanActivity extends BaseActivity implements QRCodeView.Delegate {
     }
 
     @Override
-    protected int wrapLayoutId() {
-        return 0;
+    protected void initStateView() {
+
     }
+
 
     @Override
     protected void initView() {

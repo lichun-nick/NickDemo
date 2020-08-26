@@ -23,18 +23,18 @@
 
         <activity android:name=".main.MainActivity"
             android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".login.LoginActivity">
 
         </activity>
         <activity android:name=".welcome.WelcomeActivity"
             android:theme="@style/WelcomeAppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ScanActivity"
             android:screenOrientation="fullSensor"/>
@@ -52,7 +52,7 @@
         <activity android:name=".voucher.receive.ReceiveVoucherSettingsActivity" />
         <activity android:name=".voucher.receive.ReceiveVoucherQrCodeActivity" />
         <activity android:name=".voucher.receive.ScanShowRequestPropertiesActivity" />
-        <activity android:name=".voucher.HistoryListActivity" />
+        <activity android:name=".voucher.VerifyHistoryListActivity" />
         <activity android:name=".voucher.VerifyRecordDetailActivity" />
     </application>
 

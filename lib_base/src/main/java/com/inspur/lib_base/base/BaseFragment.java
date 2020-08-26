@@ -62,7 +62,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected void hideProgressLoading(){
-        if(loadingDialog != null && !loadingDialog.isCancelable()){
+        if(loadingDialog != null){
             loadingDialog.dismiss();
             loadingDialog = null;
         }
